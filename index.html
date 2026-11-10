@@ -1,64 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nova.ai</title>
+    <title>Nova.ai Professional</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="theme-color" content="#0a0e1a">
 </head>
 
 <body>
 
-<div class="header">
-  <button id="clearBtn">🗑️</button>
+<div id="historyOverlay" class="history-overlay"></div>
 
-<div class="logo">🤖</div>
+<aside id="historyPanel" class="history-panel">
+    <div class="history-header">
+        <span>Chats</span>
+        <button id="closeHistoryBtn">✕</button>
+    </div>
+    <button id="newChatBtn" class="new-chat-btn">+ New Chat</button>
+    <div id="historyList" class="history-list"></div>
+    <button id="clearAllBtn" class="clear-all-btn">🗑 Clear All Chats</button>
+</aside>
 
-<div>
+<div class="app">
 
-<h2>Nova.ai</h2>
+    <header class="header">
+        <div class="logo">🤖 Nova.ai</div>
+        <div class="header-actions">
+            <button id="voiceModeBtn" title="Voice Mode">🎙️</button>
+            <button id="themeToggleBtn" title="Toggle light/dark theme">🌙</button>
+            <button id="menuBtn">☰</button>
+        </div>
+    </header>
 
-<p class="status">🟢 Online</p>
+    <main class="chat-area" id="chatArea">
+        <div class="message ai">
+            <div class="bubble">
+                👋 Hello! Welcome to Nova.ai — ask me anything.
+            </div>
+        </div>
+    </main>
+
+    <footer class="input-area">
+        <input id="userInput" type="text" placeholder="Message Nova.ai...">
+        <button id="micBtn">M</button>
+        <button id="sendBtn">S</button>
+    </footer>
 
 </div>
 
+<!-- Full-screen Voice Mode (ChatGPT/Gemini style) -->
+<div id="voiceModeScreen" class="voice-mode-screen">
+    <button id="closeVoiceModeBtn" class="voice-close-btn">✕</button>
+    <div id="voiceOrb" class="voice-orb listening"></div>
+    <div id="voiceStatusText" class="voice-status-text">Listening...</div>
 </div>
 
-<div id="chat-box">
-
-<div class="bot-message">
-
-👋 Hi Mahesh!<br>
-
-I'm Nova.ai.<br>
-
-Your AI Best Friend & Assistant.
-
+<!-- Website Builder live preview -->
+<div id="websitePreviewOverlay" class="website-preview-overlay">
+    <div class="website-preview-header">
+        <span>Live Preview</span>
+        <button id="closeWebsitePreviewBtn">✕</button>
+    </div>
+    <iframe id="websitePreviewFrame" class="website-preview-frame" sandbox="allow-scripts"></iframe>
 </div>
 
-</div>
+<!-- Secrets (API keys) - gitignored, loaded before script.js -->
+<script src="assets/js/config.js"></script>
 
-<div id="input-area">
+<!-- Agent files must load BEFORE masterAgent.js and script.js -->
+<script src="assets/js/customAgentManager.js"></script>
+<script src="assets/js/agentManager.js"></script>
+<script src="assets/js/calculatorAgent.js"></script>
+<script src="assets/js/memoryAgent.js"></script>
+<script src="assets/js/teacherAgent.js"></script>
+<script src="assets/js/codingAgent.js"></script>
+<script src="assets/js/webAgent.js"></script>
+<script src="assets/js/funAgent.js"></script>
+<script src="assets/js/websiteBuilderAgent.js"></script>
+<script src="assets/js/promptGeneratorAgent.js"></script>
+<script src="assets/js/progTeacherAgent.js"></script>
+<script src="assets/js/pdfAgent.js"></script>
+<script src="assets/js/imageAgent.js"></script>
+<script src="assets/js/webSearchAgent.js"></script>
+<script src="assets/js/agentBuilderAgent.js"></script>
+<script src="assets/js/masterAgent.js"></script>
 
-<button class="attach">📎</button>
-
-<input
-id="messageInput"
-type="text"
-placeholder="Message Nova.ai...">
-
-<button id="micBtn">🎤</button>
+<!-- script.js must load LAST - it uses everything above -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
-<button class="sendBtn">➤</button>
-
-</div>
-
 <script src="script.js"></script>
 
 </body>
-
 </html>
